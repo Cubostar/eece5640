@@ -53,6 +53,14 @@ float dot_product_avx512f(const float *a, const float *b, size_t len) {
     return total_sum;
 }
 
+float* matrix_vector_avx512f(const float** mat, const float* vec, size_t size) {
+    float* result = malloc(size * sizeof(*result));
+    for (int i = 0; i < size; i++) {
+        result[i] = dot_product_avx512f(mat[i], vec, size); 
+    }
+    return result;
+}
+
 int main() {
 
 #define N 4096
@@ -60,29 +68,28 @@ int main() {
 double start, finish, total;
 float* result;
 int i, j;
-float** a = malloc(N & sizeof(*a)); 
+float** a = malloc(N * sizeof(*a)); 
 float b[N];
 size_t len = sizeof(b)/sizeof(b[0]);	
 //    size_t len = sizeof(a) / sizeof(a[0]);
 
 for (i=0; i< N; i++) {
 	b[i] = 1.0;
+        printf("%f\n", b[i]);
         a[i] = malloc(N * sizeof(*a[i]));
         for (j=0; j< N; j++) {
             a[i][j] = 1.0;
         }
 }
 
-    /*
 start = CLOCK();
 
 result = matrix_vector_avx512f(a, b, len);
 
 finish = CLOCK();
 total = finish-start;
-printf("Matrix-vector result = %f \n", result);
+printf("Matrix-vector result = %f \n", result[0]);
 printf("The total time for matrix multiplication with AVX = %f ms\n", total);
-*/
 
 start = CLOCK();
 
