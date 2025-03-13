@@ -33,7 +33,6 @@ int main() {
     cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0f, A, k, B, n, 0.0f, C, n); 
     finish = CLOCK();
     total = finish-start;
-    printf("The total time for matrix multiplication = %f ms\n", total);
 
     // Print the result matrix C
     for (int i = 0; i < m; i++) {
@@ -42,6 +41,7 @@ int main() {
         }
         printf("\n");
     }
+    printf("The total time for matrix multiplication = %f ms\n", total);
 
     // Free allocated memory
     free(A);
