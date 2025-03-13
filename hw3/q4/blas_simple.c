@@ -4,7 +4,7 @@
 
 int main() {
     // Matrix dimensions
-    int m = 2, n = 3, k = 2;
+    int m = 256, n = 256, k = 256;
 
     // Allocate memory for matrices
     float *A = (float *)malloc(m * k * sizeof(float));
