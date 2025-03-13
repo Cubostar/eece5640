@@ -88,7 +88,6 @@ result = matrix_vector_avx512f(a, b, len);
 
 finish = CLOCK();
 total = finish-start;
-printf("Matrix-vector result = %f \n", result[0]);
 printf("The total time for matrix multiplication with AVX = %f ms\n", total);
 
 start = CLOCK();
@@ -97,7 +96,6 @@ result = matrix_vector(a, b, len);
 
 finish = CLOCK();
 total = finish-start;
-printf("Matrix-vector result = %f \n", result[0]); /* prevent dead code elimination */
 printf("The total time for matrix multiplication without AVX = %f ms\n", total);
     return 0;
 }
