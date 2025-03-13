@@ -75,7 +75,6 @@ size_t len = sizeof(b)/sizeof(b[0]);
 
 for (i=0; i< N; i++) {
 	b[i] = 1.0;
-        printf("%f\n", b[i]);
         a[i] = malloc(N * sizeof(*a[i]));
         for (j=0; j< N; j++) {
             a[i][j] = 1.0;
