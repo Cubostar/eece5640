@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cblas.h>
+#include <time.h>
+
+double CLOCK() {
+        struct timespec t;
+        clock_gettime(CLOCK_MONOTONIC,  &t);
+        return (t.tv_sec * 1000)+(t.tv_nsec*1e-6);
+}
 
 int main() {
     // Matrix dimensions
@@ -19,8 +26,14 @@ int main() {
         B[i] = i + 1;
     }
 
+    double start, finish, total;
+
     // Perform matrix multiplication using cblas_sgemm
+    start = CLOCK();
     cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0f, A, k, B, n, 0.0f, C, n); 
+    finish = CLOCK();
+    total = finish-start;
+    printf("The total time for matrix multiplication = %f ms\n", total);
 
     // Print the result matrix C
     for (int i = 0; i < m; i++) {
